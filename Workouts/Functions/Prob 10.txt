@@ -1,0 +1,6 @@
+function removeProperty(obj, key){
+delete obj[key];
+return obj;
+}
+obj={name:"David",age:22}
+console.log(removeProperty(obj,"name"));
