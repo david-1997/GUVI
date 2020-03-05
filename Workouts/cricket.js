@@ -11,71 +11,49 @@ constructor()
 	this.str_p="";
 	this.str_w="";
 	this.str_b="";
+	this.scores=[0,0,0,0,0,0,0,0,0,0,0];
+	this.score=0;
 }
-bat1()
+bat(team)
 {	
 		var run=Math.floor((Math.random()*100)%7);
 		if(run>0)
 		{
 			this.runs=this.runs+run;
-			this.balls--;
 			this.count++;
-			if(this.count==6)
-			{
-				this.player++;
-				this.count=0;
-			}
+			this.score=this.score+run;
 		}
-		else
-		{
+		if(run==0||this.count==6)
+		{	
+			if(run==0)	{	this.wickets++;	}
+			if(this.count==6)	{	this.count=0;	}
+			this.scores[this.player-1]=this.score;
 			this.player++;
-			this.wickets++;
-			this.count=0;
+			this.score=0;
 		}
+		this.balls--;
 		this.str_r="Runs: "+this.runs;
 		this.str_p="Player "+this.player;
 		this.str_w="Wickets: "+this.wickets;
 		this.str_b="Balls left: "+this.balls;
+		if(team==1)
+		{
 		td2_r1.innerHTML=this.str_r;
 		td3_w1.innerHTML=this.str_w;
 		td_p1.innerHTML=this.str_p;
 		td4_b1.innerHTML=this.str_b;
-		if(this.player==12)
-		{
-			td_p1.innerHTML="All-out"
-		}
 		if(this.wickets==11||this.balls==0||this.player==12)
 		{
+			td_p1.innerHTML="Innings over"
 			bat1.disabled=true;
 			bat2.disabled=false;
+			localStorage.setItem("runs1",this.runs);
+			localStorage.setItem("wickets1",this.wickets);
+			localStorage.setItem("scores1",this.scores)
 		}
-		localStorage.setItem("runs1",this.runs);
-		localStorage.setItem("wickets1",this.wickets);
-}
-bat2()
-{	
-		var run=Math.floor((Math.random()*100)%7);
-		if(run>0)
+		}
+		else if(team==2)
 		{
-			this.runs=this.runs+run;
-			this.balls--;
-			this.count++;
-			if(this.count==6)
-			{
-				this.player++;
-				this.count=0;
-			}
-		}
-		else
-		{
-			this.player++;
-			this.wickets++;
-			this.count=0;
-		}
-		this.str_r="Runs: "+this.runs;
-		this.str_p="Player "+this.player;
-		this.str_w="Wickets: "+this.wickets;
-		this.str_b="Balls left: "+this.balls;
 		td2_r2.innerHTML=this.str_r;
 		td3_w2.innerHTML=this.str_w;
 		td_p2.innerHTML=this.str_p;
@@ -84,10 +62,12 @@ bat2()
 		{
 			td_p2.innerHTML="Innings over"
 			bat2.disabled=true;
-			window.location.href = "result.html";
+			localStorage.setItem("runs2",this.runs); 
+			localStorage.setItem("wickets2",this.wickets);
+			localStorage.setItem("scores2",this.scores);
+			window.location.href="result.html";
 		}
-		localStorage.setItem("runs2",this.runs); 
-		localStorage.setItem("wickets2",this.wickets);
+		}
 }
 }
 
@@ -183,7 +163,7 @@ td5_bat1.id='td3_bat1'
 var bat1=document.createElement('button');
 td5_bat1.appendChild(bat1);
 bat1.innerHTML = 'Bat';
-bat1.onclick = function(){t1.bat1()};
+bat1.onclick = function(){t1.bat(1)};
 
 var td5_bat2=document.createElement("td");
 tr5.appendChild(td5_bat2);
@@ -193,4 +173,4 @@ var bat2=document.createElement('button');
 td5_bat2.appendChild(bat2);
 bat2.innerHTML = 'Bat';
 bat2.disabled=true;
-bat2.onclick = function(){t2.bat2()};
+bat2.onclick = function(){t2.bat(2)};
