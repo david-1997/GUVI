@@ -1,10 +1,10 @@
 var runs1=localStorage.getItem("runs1");
 var wickets1=localStorage.getItem("wickets1");
-var scores1=localStorage.getItem("scores1");
+var scores1=localStorage.getItem("scores1").split(",").map(Number);
 
 var runs2=localStorage.getItem("runs2");
 var wickets2=localStorage.getItem("wickets2");
-var scores2=localStorage.getItem("scores2");
+var scores2=localStorage.getItem("scores2").split(",").map(Number);
 
 var str_r1="Runs "+runs1;
 var str_r2="Runs "+runs2;
@@ -403,6 +403,5 @@ else
 }
 var td4=document.createElement("td");
 tr4.appendChild(td4);
-td4.id='td4'
 td4.id='td4'
 td4.innerHTML=str_res;
