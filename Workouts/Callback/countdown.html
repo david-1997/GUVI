@@ -1,0 +1,22 @@
+<html>
+<body>
+<script>
+var i = 10;
+function myLoop () {
+setTimeout(function () {
+document.getElementById("div").textContent=i
+i--;
+if (i>=0) {
+myLoop();
+}
+else
+{
+document.getElementById("div").textContent="eeeeeeeeeeeeeeeeeeeee"
+}
+},1000)
+}
+myLoop();
+</script>
+<div id="div"></div>
+</body>
+</html>
