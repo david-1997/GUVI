@@ -1,0 +1,6 @@
+var obj = { name:"david" ,age:22, haspets: false};
+function printAsArray(obj)
+{
+console.log(Object.entries(obj))
+}
+printAsArray(obj);

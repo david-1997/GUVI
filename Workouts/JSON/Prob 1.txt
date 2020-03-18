@@ -1,0 +1,9 @@
+var obj = { name:"david" ,age:22, haspets: false};
+function printAllValues(obj)
+{
+for(var prop in obj)
+{
+console.log(prop+obj[prop])
+}
+}
+printAllValues(obj);

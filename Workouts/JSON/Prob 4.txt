@@ -1,0 +1,9 @@
+function arrToObj(a){
+var l=a.length
+var obj={}
+var c= a[l-1]
+obj[a[0]]=c;
+return obj;
+}
+var a=["GUVI","I","am","Geek"];
+console.log(arrToObj(a));

@@ -1,0 +1,5 @@
+var obj = { name:"david" ,age:22, haspets: false};
+function transformEmployeeData(arr) {
+var tranformEmployeeList = []; 
+return tranformEmployeeList;
+}
