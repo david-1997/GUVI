@@ -1,0 +1,42 @@
+<html>
+</head><body>
+<script>
+function temperature()
+{
+var fetch1=fetch("https://restcountries.eu/rest/v2/all");
+fetch1.then(function(data1){
+return data1.json();
+}).then(function(countries)
+{
+var name=document.getElementById("inp").value;
+const country = countries.filter((item) => {
+return item.name==name;
+});
+var cap=country[0].capital;
+var code=country[0].alpha2Code;
+var flag=country[0].flag;
+document.getElementById("flag").src=flag;
+document.getElementById("flag").style.width="100px" 
+var url="http://api.openweathermap.org/data/2.5/weather?q="+cap+"&appid=4b8257af63d0f5bda3a3f065cac5a035"
+var fetch2=fetch(url);
+return fetch2.then(function(data2){
+return data2.json();
+})
+}).then(function(weather){
+var temp="Temperature: "+JSON.stringify(weather.main.temp)+" F"
+document.getElementById("weather").innerHTML=temp
+//console.log(JSON.stringify(weather.main.temp));
+})
+.catch(function(err){
+console.error(err);
+});
+}
+</script>
+<input id="inp">
+<button onclick="temperature()">Get flag and Temperature</button>
+<div id="country">
+<img id="flag">
+<p id="weather" ></p>
+</div>
+</body>
+</html>
