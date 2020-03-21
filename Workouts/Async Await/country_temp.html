@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<script>
+async function fetchCountry(){
+var fetch_country= await fetch("https://restcountries.eu/rest/v2/all");
+var countries=await fetch_country.json();
+for(i=0;i<countries.length;i++)
+{       
+if(countries[i].capital!="")
+{
+var row=tab.insertRow();
+var col1=row.insertCell(0);
+col1.innerHTML=countries[i].name
+col1.id="cell"+i+".1"
+var col2=row.insertCell(1);
+col2.innerHTML=countries[i].capital
+col1.id="cell"+i+".2"
+var col3=row.insertCell(2);
+var img=document.createElement("img");
+img.src=countries[i].flag;
+img.style.width="100px";
+img.id="img"+i;
+col3.appendChild(img)
+col3.id="cell"+i+".3"
+var col4=row.insertCell(3);
+col4.id="cell"+i+".4";
+console.log(col4.id);
+(function(i){ 
+img.onclick = function() {
+getTemperature(i,countries[i].capital);
+}
+})(i);
+}
+}
+}
+async function getTemperature(id,cap)
+{
+var url="http://api.openweathermap.org/data/2.5/weather?q="+ cap + "&appid=60e6eb111290694f4a3ffdb5d17f31d7"
+var fetch_weather=await fetch(url);
+var weather=await fetch_weather.json();
+console.log(weather.main);
+document.getElementById("cell"+id+".4").innerHTML=weather.main.temp;
+}
+fetchCountry();
+</script>
+<table id="tab">
+<tr>
+<td>Country</td>
+<td>Capital</td>
+<td>Flag</td>
+<td>Temperature</td>
+</tr>
+</table>
+</body>	
+</html>
