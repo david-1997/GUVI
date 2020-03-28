@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+        function register() {
+            var data = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("pass").value
+            };
+            fetch("http://localhost:3030/register", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }).then(function (data) {
+                console.log(data)
+            })
+        }
+</script>
+<form onsubmit="register();return false">
+<div><input type="email" id="email" placeholder="Email"></div>
+<div><input type="password" id="pass" placeholder="Password"></div>
+<div><input type="submit" value="Submit"></div>
+</form>
+<body>
+</html>
