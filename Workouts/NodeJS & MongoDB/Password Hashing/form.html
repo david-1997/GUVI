@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <body>
-<script>
+    <script>
         function register() {
             var data = {
-                email: document.getElementById("email").value,
-                password: document.getElementById("pass").value
+                email: document.getElementById("email1").value,
+                password: document.getElementById("pass1").value
             };
             fetch("http://localhost:3030/register", {
                 method: "POST",
@@ -15,14 +15,39 @@
                 },
                 body: JSON.stringify(data)
             }).then(function (data) {
-                console.log(data)
+                return data.json();
+            }).then((userData) => {
+                document.write(userData.email);
             })
         }
-</script>
-<form onsubmit="register();return false">
-<div><input type="email" id="email" placeholder="Email"></div>
-<div><input type="password" id="pass" placeholder="Password"></div>
-<div><input type="submit" value="Submit"></div>
-</form>
-<body>
+        function login() {
+            var data = {
+                email: document.getElementById("email2").value,
+                password: document.getElementById("pass2").value
+            };
+            fetch("http://localhost:3030/login", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }).then(function (data) {
+                return data.json();
+            }).then((userData) => {
+                console.log(userData);
+            })
+        }
+    </script>
+    <form onsubmit="register();return false">
+        <div><input type="email" id="email1" placeholder="Email"></div>
+        <div><input type="password" id="pass1" placeholder="Password"></div>
+        <div><input type="submit" value="Register"></div>
+    </form>
+    <form onsubmit="login();return false">
+        <div><input type="email" id="email2" placeholder="Email"></div>
+        <div><input type="password" id="pass2" placeholder="Password"></div>
+        <div><input type="submit" value="Login"></div>
+    </form>
+    </body>
 </html>
