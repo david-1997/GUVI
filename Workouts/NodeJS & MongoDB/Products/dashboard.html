@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <form>
+            <table id="tab">
+                <tr>
+                    <td><label>Type product name :</label></td>
+                    <td><input type="text" id="prodname" placeholder="Product"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Quantity :</label>
+                    </td>
+                    <td><input type="number" id="quantity" max="5" value="1"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" id="placeorder" value="Add Item" onclick="insert();return false;">
+                        <input type="submit" id="viewcart" value="View Cart" onclick="showCart();return false;">
+                    </td>
+                </tr>
+            </table>
+            <table id="cart" border="1px solid black">
+            </table>
+        </form>
+        <form id="edit" onsubmit="close(); return false;">
+            <input type="text" id="edit_prod">
+            <input type="number" max="5" id="edit_quan" value="1">
+            <input type="submit" value="Edit">
+        </form>
+        <h3 id="logout"> <a href="login.html" onclick="logout();return false;">Logout</a></h3>
+    </div>
+    <script src="dashboard.js">
+    </script>
+</body>
+</html>

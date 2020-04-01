@@ -1,0 +1,33 @@
+<html>
+<body>
+    <script src="register.js"></script>
+    <form onsubmit="register(); return false" id="reg">
+            <table>
+                <tr>
+                    <td><label>Fullname:</label></td>
+                    <td><input type="text" id="fullname"></td>
+                </tr>
+                <tr>
+                    <td><label>Username:</label></td>
+                    <td><input type="text" id="username"></td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="email" id="email"></td>
+                </tr>
+                <tr>
+                <td><label>Password:</label></td>
+                <td> <input type="password" id="password"></td>
+                </tr>
+                <tr>
+                    <td colspan=2 align="center"><input type="submit" value="Signup" onclick="register(); return false"></td>
+                </tr>
+                <tr>
+                    <td colspan=2 align="center">
+                        <label>Already have an account? </label><a href="login.html">sign in here</a>
+                    </td>
+                </tr>
+            </table>
+    </form>
+</body>
+</html>
